@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="Content-Security-Policy"
+        content="default-src 'self' data: file: https:; style-src 'self' 'unsafe-inline'; script-src 'self' 'unsafe-inline'; img-src 'self' data: file: https:;">
+  <title>番茄小说阅读器</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- 外层容器 -->
+  <div id="app">
+
+    <!-- 顶部标题栏（拖拽区域） -->
+    <div id="title-bar">
+      <div id="drag-area">
+        <span id="app-icon">📖</span>
+        <span id="app-title">番茄小说阅读器</span>
+      </div>
+      <div id="window-controls">
+        <button class="ctrl-btn" id="btn-top" title="置顶">📌</button>
+        <button class="ctrl-btn" id="btn-settings" title="设置">⚙️</button>
+        <button class="ctrl-btn" id="btn-minimize" title="最小化">—</button>
+        <button class="ctrl-btn" id="btn-maximize" title="最大化">□</button>
+        <button class="ctrl-btn btn-close" id="btn-close" title="关闭">✕</button>
+      </div>
+    </div>
+
+    <!-- 工具栏：地址/快捷操作 -->
+    <div id="toolbar">
+      <button class="tool-btn" id="btn-back" title="后退">◀</button>
+      <button class="tool-btn" id="btn-forward" title="前进">▶</button>
+      <button class="tool-btn" id="btn-reload" title="刷新">⟳</button>
+      <button class="tool-btn" id="btn-home" title="首页">🏠</button>
+      <div class="toolbar-sep"></div>
+      <input type="text" id="url-input" placeholder="点击跳转番茄小说...">
+      <button class="tool-btn" id="btn-go" title="前往">Go</button>
+    </div>
+
+    <!-- 主内容区 -->
+    <div id="content">
+      <webview id="reader"
+               src="https://fanqienovel.com/"
+               allowpopups
+               nodeintegration="false"></webview>
+    </div>
+
+    <!-- 右侧设置面板 -->
+    <div id="settings-panel" class="hidden">
+      <div class="panel-header">
+        <span>📝 阅读设置</span>
+        <button id="btn-close-panel" class="panel-close">✕</button>
+      </div>
+
+      <div class="panel-section">
+        <label>字体大小：<span id="val-font-size">16</span>px</label>
+        <input type="range" id="slider-font-size" min="12" max="32" value="16">
+      </div>
+
+      <div class="panel-section">
+        <label>行间距（密集度）：<span id="val-line-height">1.6</span></label>
+        <input type="range" id="slider-line-height" min="1.0" max="2.5" step="0.1" value="1.6">
+      </div>
+
+      <div class="panel-section">
+        <label>字间距：<span id="val-letter-spacing">0</span>px</label>
+        <input type="range" id="slider-letter-spacing" min="0" max="3" step="0.5" value="0">
+      </div>
+
+      <div class="panel-section">
+        <label>段落间距：<span id="val-paragraph-gap">12</span>px</label>
+        <input type="range" id="slider-paragraph-gap" min="4" max="32" value="12">
+      </div>
+
+      <div class="panel-section">
+        <label>背景颜色</label>
+        <div id="preset-colors">
+          <button class="color-swatch" data-color="#ffffff" style="background:#ffffff;border:1px solid #ccc;"></button>
+          <button class="color-swatch" data-color="#f5f1e8" style="background:#f5f1e8;"></button>
+          <button class="color-swatch" data-color="#c7edcc" style="background:#c7edcc;"></button>
+          <button class="color-swatch" data-color="#dde5b6" style="background:#dde5b6;"></button>
+          <button class="color-swatch" data-color="#2d2d2d" style="background:#2d2d2d;"></button>
+          <button class="color-swatch" data-color="#1a1a2e" style="background:#1a1a2e;"></button>
+          <button class="color-swatch" data-color="#0f0f23" style="background:#0f0f23;"></button>
+          <input type="color" id="color-picker" value="#ffffff">
+        </div>
+      </div>
+
+      <div class="panel-section">
+        <label>窗口透明度：<span id="val-opacity">100</span>%</label>
+        <input type="range" id="slider-opacity" min="30" max="100" value="100">
+      </div>
+
+      <div class="panel-section">
+        <label>字色覆盖：</label>
+        <select id="force-text-color">
+          <option value="auto">跟随背景自动</option>
+          <option value="#000000">强制黑色</option>
+          <option value="#ffffff">强制白色</option>
+        </select>
+      </div>
+
+      <button id="btn-reset" class="reset-btn">↺ 恢复默认</button>
+      <button id="btn-save" class="save-btn">💾 保存设置</button>
+    </div>
+
+  </div>
+
+  <script src="renderer.js"></script>
+</body>
+</html>

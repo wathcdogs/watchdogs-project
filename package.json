@@ -1,0 +1,15 @@
+{
+  "name": "tomato-reader",
+  "version": "1.0.0",
+  "description": "番茄小说PC阅读器 - 透明无边框、可调节阅读体验",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron ."
+  },
+  "keywords": ["electron", "reader", "tomato", "novel"],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^45.0.0"
+  }
+}
