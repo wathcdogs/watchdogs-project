@@ -4,12 +4,50 @@
   "description": "番茄小说PC阅读器 - 透明无边框、可调节阅读体验",
   "main": "main.js",
   "scripts": {
-    "start": "electron ."
+    "start": "electron .",
+    "dist": "electron-builder --win portable --x64",
+    "dist:nsis": "electron-builder --win nsis --x64",
+    "dist:dir": "electron-builder --win dir --x64",
+    "dist:linux": "electron-builder --linux --x64"
   },
   "keywords": ["electron", "reader", "tomato", "novel"],
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "electron": "^45.0.0"
+    "electron": "^45.0.0",
+    "electron-builder": "^25.1.8"
+  },
+  "build": {
+    "appId": "com.tomatoreader.app",
+    "productName": "番茄小说阅读器",
+    "asar": true,
+    "directories": {
+      "output": "dist",
+      "buildResources": "build"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "renderer/**/*",
+      "package.json"
+    ],
+    "win": {
+      "artifactName": "番茄小说阅读器-${version}.${ext}",
+      "signAndEditExecutable": false
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true,
+      "shortcutName": "番茄小说阅读器"
+    },
+    "portable": {
+      "artifactName": "番茄小说阅读器-Portable-${version}.${ext}"
+    },
+    "linux": {
+      "target": "AppImage",
+      "artifactName": "番茄小说阅读器-${version}.${ext}"
+    }
   }
 }
